@@ -83,11 +83,11 @@ function CheckoutProduct({
       </div>
       {/* Right Buttons  */}
       <div className='flex flex-col space-y-2 p-2'>
-        <button className='button' onClick={add}>
+        <button className='button' onClick={() => add()}>
           <PlusIcon className='w-4 h-4 mx-auto inline' />
           <span className='hidden sm:inline'>{'  Add'}</span>
         </button>
-        <button className='button' onClick={remove}>
+        <button className='button' onClick={() => remove()}>
           <TrashIcon className='w-4 h-4 mx-auto inline' />
           <span className='hidden sm:inline'>{' Delete'}</span>
         </button>
