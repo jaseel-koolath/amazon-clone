@@ -3,6 +3,8 @@ import { StarIcon as StarOutline } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import primeIcon from '../assets/prime_icon.png';
+import { useDispatch } from 'react-redux';
+import { addToBasket } from '../slices/basketSlice';
 
 function Product({
   id,
@@ -19,6 +21,20 @@ function Product({
     return () => {};
   }, []);
   price = price * 60;
+  const dispatch = useDispatch();
+  const addtoBasket = () => {
+    const product = {
+      id,
+      title,
+      price,
+      description,
+      category,
+      image,
+      hasPrime,
+      rating: { rate, count },
+    };
+    dispatch(addToBasket(product));
+  };
   return (
     <div className='relative flex flex-col m-5 bg-white z-30  p-10'>
       <p className='absolute top-2 right-2 text-gray-400 text-xs italic'>
@@ -62,7 +78,9 @@ function Product({
           <p className='text-xs text-gray-500'>FREE Next-day Delivery</p>
         </div>
       )}
-      <button className='mt-auto button'>Add to Basket</button>
+      <button className='mt-auto button' onClick={() => addtoBasket()}>
+        Add to Basket
+      </button>
     </div>
   );
 }

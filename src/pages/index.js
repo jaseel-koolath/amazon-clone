@@ -34,6 +34,7 @@ export async function getServerSideProps(context) {
   const jewelery = await fetch(
     'https://fakestoreapi.com/products/category/jewelery'
   ).then((res) => res.json());
+
   return {
     props: { products, electronics, jewelery }, // will be passed to the page component as props
   };
