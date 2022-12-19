@@ -18,7 +18,7 @@ function Success() {
           </div>
           <p>
             Your order will be processed and shipped as soon as possible. If you
-            have any questions or concerns about your order, please don't
+            have any questions or concerns about your order, please do not
             hesitate to contact us. Thank you again for choosing us. We hope to
             see you again soon.
           </p>
