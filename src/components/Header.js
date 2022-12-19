@@ -47,7 +47,12 @@ const Header = () => {
             <p>{session ? `${session.user.name}` : 'Sign In'}</p>
             <p className='font-bold'>Account and Lists</p>
           </div>
-          <div className='hidden sm:block link'>
+          <div
+            className=' link'
+            onClick={() => {
+              router.push('/orders');
+            }}
+          >
             <p>Returns</p>
             <p className=' font-bold'>& Orders</p>
           </div>

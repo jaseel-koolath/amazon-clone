@@ -6,6 +6,7 @@ import moment from 'moment';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
+import Order from '../components/Order';
 
 function Orders({ orders }) {
   console.log(orders);
@@ -18,11 +19,15 @@ function Orders({ orders }) {
           Your Orders
         </h1>
         {session ? (
-          <h2>x orders</h2>
+          <h2>{orders.length} orders</h2>
         ) : (
           <h2>Please sign in to see your orders</h2>
         )}
-        <div className='mt-5 space-y-4'></div>
+        <div className='mt-5 space-y-4'>
+          {orders?.map((order) => (
+            <Order key={order.id} {...order} />
+          ))}
+        </div>
       </main>
     </div>
   );

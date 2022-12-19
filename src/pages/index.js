@@ -1,7 +1,9 @@
+import { unstable_getServerSession } from 'next-auth';
 import Head from 'next/head';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
 import ProuductsFeed from '../components/ProuductsFeed';
+import { authOptions } from './api/auth/[...nextauth]';
 
 export default function Home({ products, electronics, jewelery }) {
   return (
@@ -34,6 +36,11 @@ export async function getServerSideProps(context) {
   const jewelery = await fetch(
     'https://fakestoreapi.com/products/category/jewelery'
   ).then((res) => res.json());
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
 
   return {
     props: { products, electronics, jewelery }, // will be passed to the page component as props
