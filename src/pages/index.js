@@ -27,20 +27,16 @@ export default function Home({ products, electronics, jewelery }) {
 }
 
 export async function getServerSideProps(context) {
-  const products = await fetch('https://fakestoreapi.com/products/').then(
-    (res) => res.json()
-  );
-  const electronics = await fetch(
-    'https://fakestoreapi.com/products/category/electronics'
-  ).then((res) => res.json());
-  const jewelery = await fetch(
-    'https://fakestoreapi.com/products/category/jewelery'
-  ).then((res) => res.json());
-  const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions
-  );
+  const [products, electronics, jewelery, session] = await Promise.all([
+    fetch('https://fakestoreapi.com/products/').then((res) => res.json()),
+    fetch('https://fakestoreapi.com/products/category/electronics').then(
+      (res) => res.json()
+    ),
+    fetch('https://fakestoreapi.com/products/category/jewelery').then((res) =>
+      res.json()
+    ),
+    unstable_getServerSession(context.req, context.res, authOptions),
+  ]);
 
   return {
     props: { products, electronics, jewelery }, // will be passed to the page component as props
